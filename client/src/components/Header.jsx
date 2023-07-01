@@ -2,7 +2,7 @@ import React from 'react'
 import {Navbar,Nav,Container} from 'react-bootstrap';
 import {FaShoppingCart,FaUser} from 'react-icons/fa';
 import {LinkContainer} from 'react-router-bootstrap'
-import logoT from '../assets/logoT.jpg'
+import logoT from '../assets/logo.png'
 
 const Header = () => {
   return (
