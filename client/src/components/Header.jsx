@@ -12,8 +12,14 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>
-              <img src={logoT} alt="logo" />
+            <Navbar.Brand
+              style={{ display: "flex", alignItems: "center", color: "#fff" }}
+            >
+              <img
+                src={logoT}
+                alt="logo"
+                style={{ height: "30px", marginRight: "10px" }}
+              />
               TechieShop
             </Navbar.Brand>
           </LinkContainer>
@@ -21,8 +27,14 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <LinkContainer to="/cart">
-                <Nav.Link>
-                  <FaShoppingCart />
+                <Nav.Link
+                  style={{
+                    color: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <FaShoppingCart style={{ marginRight: "5px" }} />
                   Cart
                   {cartItems.length > 0 && (
                     <Badge pill bg="success" style={{ marginLeft: "5px" }}>
@@ -32,8 +44,14 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/login">
-                <Nav.Link>
-                  <FaUser />
+                <Nav.Link
+                  style={{
+                    color: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <FaUser style={{ marginRight: "5px" }} />
                   Login
                 </Nav.Link>
               </LinkContainer>

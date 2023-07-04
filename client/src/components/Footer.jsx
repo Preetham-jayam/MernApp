@@ -5,9 +5,9 @@ const Footer = () => {
     const currentYear=new Date().getFullYear();
   return (
     <footer>
-        <Container>
+        <Container >
             <Row>
-                <Col className="text-center py-3">
+                <Col style={{color:'black'}} className="text-center py-3">
                     <p>TechieShop &copy; {currentYear}</p>
                 </Col>
             </Row>

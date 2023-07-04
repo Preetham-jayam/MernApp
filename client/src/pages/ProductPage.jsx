@@ -50,7 +50,7 @@ const ProductPage = () => {
           <Col md={4}>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h3>{product.name}</h3>
+                <h3 style={{color:'black'}}>{product.name}</h3>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Rating value={product.rating} text={`${product.numReviews}`} />
