@@ -12,6 +12,8 @@ import reportWebVitals from './reportWebVitals';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/cartPage.jsx';
+import LoginScreen from './pages/LoginScreen.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +21,8 @@ const router=createBrowserRouter(
     <Route index={true} path='/' element={<HomePage/>}/>
     <Route path='/product/:id' element={<ProductPage/>}/>
     <Route path='/cart' element={<CartPage/>}></Route>
+    <Route path='/login' element={<LoginScreen/>}></Route>
+    <Route path='/register' element={<RegisterPage />} />
   </Route>
 ));
 const root = ReactDOM.createRoot(document.getElementById('root'));
