@@ -14,6 +14,7 @@ import ProductPage from './pages/ProductPage';
 import CartPage from './pages/cartPage.jsx';
 import LoginScreen from './pages/LoginScreen.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
+import Shippingpage from './pages/Shippingpage.jsx';
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router=createBrowserRouter(
     <Route path='/cart' element={<CartPage/>}></Route>
     <Route path='/login' element={<LoginScreen/>}></Route>
     <Route path='/register' element={<RegisterPage />} />
+    <Route path='/shipping' element={<Shippingpage/>}></Route>
   </Route>
 ));
 const root = ReactDOM.createRoot(document.getElementById('root'));
