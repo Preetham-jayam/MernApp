@@ -17,7 +17,7 @@ import LoginScreen from './pages/LoginScreen.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import Shippingpage from './pages/Shippingpage.jsx';
 import Paymentpage from './pages/Paymentpage.jsx';
-
+import PlaceOrderPage from './pages/PlaceOrderPage.jsx'
 const router=createBrowserRouter(
   createRoutesFromElements(
   <Route path='/' element={<App/>}>
@@ -29,6 +29,7 @@ const router=createBrowserRouter(
     <Route path='' element={<PrivateRoute/>}>
      <Route path='/shipping' element={<Shippingpage/>}></Route>
      <Route path='/payment' element={<Paymentpage/>} ></Route>
+     <Route path='/placeorder' element={<PlaceOrderPage />} />
     </Route>
   </Route>
 ));
