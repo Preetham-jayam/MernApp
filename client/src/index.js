@@ -9,6 +9,7 @@ import './assets/styles/bootstrap.custom.css';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import PrivateRoute from './components/PrivateRoute.jsx';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/cartPage.jsx';
@@ -24,7 +25,9 @@ const router=createBrowserRouter(
     <Route path='/cart' element={<CartPage/>}></Route>
     <Route path='/login' element={<LoginScreen/>}></Route>
     <Route path='/register' element={<RegisterPage />} />
-    <Route path='/shipping' element={<Shippingpage/>}></Route>
+    <Route path='' element={<PrivateRoute/>}>
+     <Route path='/shipping' element={<Shippingpage/>}></Route>
+    </Route>
   </Route>
 ));
 const root = ReactDOM.createRoot(document.getElementById('root'));
