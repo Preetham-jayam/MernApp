@@ -17,7 +17,8 @@ import LoginScreen from './pages/LoginScreen.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import Shippingpage from './pages/Shippingpage.jsx';
 import Paymentpage from './pages/Paymentpage.jsx';
-import PlaceOrderPage from './pages/PlaceOrderPage.jsx'
+import PlaceOrderPage from './pages/PlaceOrderPage.jsx';
+import OrderPage from './pages/OrderPage.jsx';
 const router=createBrowserRouter(
   createRoutesFromElements(
   <Route path='/' element={<App/>}>
@@ -30,6 +31,7 @@ const router=createBrowserRouter(
      <Route path='/shipping' element={<Shippingpage/>}></Route>
      <Route path='/payment' element={<Paymentpage/>} ></Route>
      <Route path='/placeorder' element={<PlaceOrderPage />} />
+     <Route path='/order/:id' element={<OrderPage/>}></Route>
     </Route>
   </Route>
 ));
