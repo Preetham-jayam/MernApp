@@ -23,6 +23,7 @@ import OrderPage from './pages/OrderPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import AdminRoute from './components/AdminRoute.jsx';
 import OrderListsPage from './pages/Admin/OrderListsPage.jsx';
+import ProductListPage from './pages/Admin/ProductListPage.jsx';
 const router=createBrowserRouter(
   createRoutesFromElements(
   <Route path='/' element={<App/>}>
@@ -41,6 +42,7 @@ const router=createBrowserRouter(
 
     <Route path='' element={<AdminRoute/>}>
       <Route path='/admin/orderlist' element={<OrderListsPage/>}></Route>
+      <Route path='/admin/productlist' element={<ProductListPage/>}></Route>
     </Route>
   </Route>
 ));

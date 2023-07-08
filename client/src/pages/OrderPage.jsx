@@ -1,52 +1,67 @@
-import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Row, Col, ListGroup, Image, Card ,Button} from 'react-bootstrap';
-import Message from '../components/Message';
-import {toast} from 'react-toastify';
-import {useSelector} from 'react-redux';
-import {PayPalButtons,usePayPalScriptReducer} from '@paypal/react-paypal-js'
-import Loader from '../components/Loader';
-import { useGetOrderDetailsQuery,useGetPaypalClientIdQuery,usePayOrderMutation } from '../slices/orderApiSlice';
+import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
+import Message from "../components/Message";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import Loader from "../components/Loader";
+import {
+  useGetOrderDetailsQuery,
+  useGetPaypalClientIdQuery,
+  usePayOrderMutation,
+  useDeliverOrderMutation,
+} from "../slices/orderApiSlice";
 
 const OrderPage = () => {
-   const { id: orderId } = useParams();
+  const { id: orderId } = useParams();
 
-   const { data: order, refetch,isLoading, error } = useGetOrderDetailsQuery(orderId);
+  const {
+    data: order,
+    refetch,
+    isLoading,
+    error,
+  } = useGetOrderDetailsQuery(orderId);
 
-   const [payOrder,{isLoading:loadingPay}]=usePayOrderMutation();
-   const [{isPending},paypalDispatch]=usePayPalScriptReducer();
-   const {data:paypal,isLoading:loadingPayPal,error:errorPayPal}=useGetPaypalClientIdQuery();
-   const {userInfo} =useSelector((state)=>state.auth);
+  const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+  const [deliverOrder, { isLoading: loadingDeliver }] =
+    useDeliverOrderMutation();
+  const {
+    data: paypal,
+    isLoading: loadingPayPal,
+    error: errorPayPal,
+  } = useGetPaypalClientIdQuery();
+  const { userInfo } = useSelector((state) => state.auth);
 
-   useEffect(()=>{
-    if(!loadingPayPal &&!errorPayPal && paypal.clientId){
-      const loadPaypalScript=async ()=>{
+  useEffect(() => {
+    if (!loadingPayPal && !errorPayPal && paypal.clientId) {
+      const loadPaypalScript = async () => {
         paypalDispatch({
-          type:'resetOptions',
-          value:{
-            'client-id':paypal.clientId,
-            currency:'USD',
-          }
+          type: "resetOptions",
+          value: {
+            "client-id": paypal.clientId,
+            currency: "USD",
+          },
         });
 
-        paypalDispatch({type:'setLoadingStatus',value:'pending'});
-      }
+        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
+      };
 
-      if(order && !order.isPaid){
-        if(!window.paypal){
+      if (order && !order.isPaid) {
+        if (!window.paypal) {
           loadPaypalScript();
         }
       }
     }
+  }, [order, paypal, paypalDispatch, loadingPayPal, errorPayPal]);
 
-   },[order,paypal,paypalDispatch,loadingPayPal,errorPayPal]);
-
-   function onApprove(data, actions) {
+  function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
         await payOrder({ orderId, details });
         refetch();
-        toast.success('Order is paid');
+        toast.success("Order is paid");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -78,38 +93,42 @@ const OrderPage = () => {
       });
   }
 
+  const deliverHandler = async () => {
+    await deliverOrder(orderId);
+    refetch();
+  };
 
   return isLoading ? (
     <Loader />
   ) : error ? (
-    <Message variant='danger'>{error}</Message>
+    <Message variant="danger">{error}</Message>
   ) : (
     <>
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
                 <strong>Name: </strong> {order.user.name}
               </p>
               <p>
-                <strong>Email: </strong>{' '}
+                <strong>Email: </strong>{" "}
                 <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
               </p>
               <p>
                 <strong>Address:</strong>
-                {order.shippingAddress.address}, {order.shippingAddress.city}{' '}
-                {order.shippingAddress.postalCode},{' '}
+                {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
+                {order.shippingAddress.postalCode},{" "}
                 {order.shippingAddress.country}
               </p>
               {order.isDelivered ? (
-                <Message variant='success'>
+                <Message variant="success">
                   Delivered on {order.deliveredAt}
                 </Message>
               ) : (
-                <Message variant='danger'>Not Delivered</Message>
+                <Message variant="danger">Not Delivered</Message>
               )}
             </ListGroup.Item>
 
@@ -120,9 +139,9 @@ const OrderPage = () => {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant='success'>Paid on {order.paidAt}</Message>
+                <Message variant="success">Paid on {order.paidAt}</Message>
               ) : (
-                <Message variant='danger'>Not Paid</Message>
+                <Message variant="danger">Not Paid</Message>
               )}
             </ListGroup.Item>
 
@@ -131,7 +150,7 @@ const OrderPage = () => {
               {order.orderItems.length === 0 ? (
                 <Message>Order is empty</Message>
               ) : (
-                <ListGroup variant='flush'>
+                <ListGroup variant="flush">
                   {order.orderItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
@@ -161,7 +180,7 @@ const OrderPage = () => {
         </Col>
         <Col md={4}>
           <Card>
-            <ListGroup variant='flush'>
+            <ListGroup variant="flush">
               <ListGroup.Item>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
@@ -189,25 +208,42 @@ const OrderPage = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-                {!order.isPaid && (
-                  <ListGroup.Item>
-                    {loadingPay && <Loader/>}
-                    {isPending ? <Loader/> :(
+              {!order.isPaid && (
+                <ListGroup.Item>
+                  {loadingPay && <Loader />}
+                  {isPending ? (
+                    <Loader />
+                  ) : (
+                    <div>
+                      {/* <Button onClick={onApproveTest} style={{marginBottom:'10px'}}>Test Pay Order</Button> */}
                       <div>
-                        {/* <Button onClick={onApproveTest} style={{marginBottom:'10px'}}>Test Pay Order</Button> */}
-                        <div>
-                          <PayPalButtons 
-                              createOrder={createOrder}
-                              onApprove={onApprove}
-                              onError={onError}
-                              ></PayPalButtons>
-                        </div>
+                        <PayPalButtons
+                          createOrder={createOrder}
+                          onApprove={onApprove}
+                          onError={onError}
+                        ></PayPalButtons>
                       </div>
-                      
-                    )}
+                    </div>
+                  )}
+                </ListGroup.Item>
+              )}
+
+              {loadingDeliver && <Loader />}
+
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type="button"
+                      className="btn btn-block"
+                      onClick={deliverHandler}
+                    >
+                      Mark As Delivered
+                    </Button>
                   </ListGroup.Item>
                 )}
-              
             </ListGroup>
           </Card>
         </Col>
