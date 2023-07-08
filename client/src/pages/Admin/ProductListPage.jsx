@@ -3,14 +3,30 @@ import { Table, Button, Row, Col } from 'react-bootstrap';
 import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
-import { useGetProductsQuery } from '../../slices/ProductsApiSlice';
+import {toast} from 'react-toastify'
+import { useGetProductsQuery ,useCreateProductMutation} from '../../slices/ProductsApiSlice';
 
 const ProductListPage = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
 
+  const [createProduct,{isLoading:loadingCreate}]=useCreateProductMutation();
+
   const deleteHandler = () => {
     console.log('delete');
   };
+
+  const createProducthandler=async ()=>{
+    if(window.confirm('Are You Sure you want to create a new product?')){
+        try{
+            await createProduct();
+            refetch();
+        } catch(err){
+            toast.error(err?.data?.message || err.error);
+
+        }
+
+    }
+  }
 
   return (
     <>
@@ -19,11 +35,13 @@ const ProductListPage = () => {
           <h1>Products</h1>
         </Col>
         <Col className='text-end'>
-          <Button className='btn-sm m-3'>
+          <Button className='btn-sm m-3' onClick={createProducthandler}>
             <FaPlus /> Create Product
           </Button>
         </Col>
       </Row>
+
+      {loadingCreate && <Loader/>}
 
       {isLoading ? (
         <Loader />
@@ -37,7 +55,7 @@ const ProductListPage = () => {
                 <th>ID</th>
                 <th>NAME</th>
                 <th>PRICE</th>
-                <th>CATEGORY</th>
+                
                 <th>BRAND</th>
                 <th></th>
               </tr>
@@ -48,7 +66,6 @@ const ProductListPage = () => {
                   <td>{product._id}</td>
                   <td>{product.name}</td>
                   <td>${product.price}</td>
-                  <td>{product.category}</td>
                   <td>{product.brand}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
