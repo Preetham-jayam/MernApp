@@ -26,6 +26,7 @@ import OrderListsPage from './pages/Admin/OrderListsPage.jsx';
 import ProductListPage from './pages/Admin/ProductListPage.jsx';
 import ProductEditpage from './pages/Admin/ProductEditPage.jsx';
 import UserListPage from './pages/Admin/UsersListPage.jsx';
+import UserEditPage from './pages/Admin/UserEditPage.jsx';
 const router=createBrowserRouter(
   createRoutesFromElements(
   <Route path='/' element={<App/>}>
@@ -47,6 +48,7 @@ const router=createBrowserRouter(
       <Route path='/admin/productlist' element={<ProductListPage/>}></Route>
       <Route path='/admin/product/:id/edit' element={<ProductEditpage/>}></Route>
       <Route path='/admin/userlist' element={<UserListPage/>}></Route>
+      <Route path='/admin/user/:id/edit' element={<UserEditPage/>}></Route>
     </Route>
   </Route>
 ));
