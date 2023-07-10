@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import Message from '../components/Message';
 import ProductCarousel from '../components/ProductCarousel';
+import Meta from '../components/Meta';
 
 const HomePage = () => {
   
@@ -29,6 +30,7 @@ const HomePage = () => {
         </Link>
       )}
     {isLoading ? (<Loader/>) : error ? (<Message variant='danger'>{error?.data?.message||error.error}</Message>) : (<>
+    <Meta/>
     <h1 style={{color:'black'}}>Latest Products</h1>
     <Row>
      {data.products.map((product)=>(
