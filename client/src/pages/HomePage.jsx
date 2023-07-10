@@ -9,12 +9,12 @@ import Message from '../components/Message';
 
 const HomePage = () => {
   
-  const { pageNumber } = useParams();
+  const { pageNumber ,keyword} = useParams();
 
   console.log(pageNumber);
 
   const { data, isLoading, error } = useGetProductsQuery({
-    pageNumber,
+   keyword, pageNumber
   });
 
   
@@ -29,7 +29,7 @@ const HomePage = () => {
          </Col>
      ))}
     </Row>
-    <Paginate pages={data.pages} page={data.page} />
+    <Paginate pages={data.pages} page={data.page} keyword={keyword ? keyword : ''}/>
     </>)}
        
     </>

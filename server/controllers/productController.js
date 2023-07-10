@@ -10,8 +10,11 @@ const getProducts= asyncHandler(async (req,res)=>{
   const pageSize = 8;
   const page = Number(req.query.pageNumber) || 1;
 
-  const count = await Product.countDocuments();
-  const products = await Product.find()
+  const searchWord=req.query.keyword ? {name:{$regex : req.query.keyword, $options:'i'}}:{};
+
+
+  const count = await Product.countDocuments({...searchWord});
+  const products = await Product.find({...searchWord})
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
