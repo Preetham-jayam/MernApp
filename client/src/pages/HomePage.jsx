@@ -1,11 +1,12 @@
 import React from 'react'
 import {Row,Col} from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import Product from '../components/Product';
 import { useGetProductsQuery } from '../slices/ProductsApiSlice';
 import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import Message from '../components/Message';
+import ProductCarousel from '../components/ProductCarousel';
 
 const HomePage = () => {
   
@@ -20,6 +21,13 @@ const HomePage = () => {
   
   return (
     <>
+     {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link to='/' className='btn btn-light'>
+          Go Back
+        </Link>
+      )}
     {isLoading ? (<Loader/>) : error ? (<Message variant='danger'>{error?.data?.message||error.error}</Message>) : (<>
     <h1 style={{color:'black'}}>Latest Products</h1>
     <Row>
