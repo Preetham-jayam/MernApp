@@ -1,6 +1,6 @@
 
 
-# TechieShop eCommerce Platform (v2)
+# TechieShop ECommerce Platform
 
 > ECommerce platform built with the MERN stack & Redux Tool Kit
 
