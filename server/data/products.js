@@ -1,81 +1,75 @@
 const products = [
   {
-
-    name: 'Airpods Wireless Bluetooth Headphones',
-    image: '/images/airpods.jpg',
+    name: 'Samsung Galaxy S21 Ultra 5G',
+    image: '/images/galaxy.png',
     description:
-      'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
+      'The Samsung Galaxy S21 Ultra 5G is the ultimate smartphone, featuring a stunning 6.8-inch Dynamic AMOLED display, powerful Exynos processor, and an advanced quad-camera system for capturing stunning photos and videos.',
+    brand: 'Samsung',
+    category: 'Electronics',
+    price: 1199.99,
+    countInStock: 8,
+    rating: 4.8,
+    numReviews: 15,
+  },
+  {
+    name: 'MacBook Pro 16-inch',
+    image: '/images/macbook.png',
+    description:
+      'Experience the power of the MacBook Pro 16-inch with its stunning Retina display, fast processors, and incredible graphics performance. Perfect for professionals and creative enthusiasts.',
     brand: 'Apple',
     category: 'Electronics',
-    price: 89.99,
+    price: 2399.99,
+    countInStock: 3,
+    rating: 4.9,
+    numReviews: 20,
+  },
+  {
+    name: 'Bose QuietComfort 35 II Wireless Headphones',
+    image: '/images/bose.png',
+    description:
+      'Enjoy world-class noise cancellation with the Bose QuietComfort 35 II Wireless Headphones. With premium materials and up to 20 hours of battery life, these headphones offer unparalleled comfort and sound quality.',
+    brand: 'Bose',
+    category: 'Electronics',
+    price: 299.99,
+    countInStock: 6,
+    rating: 4.7,
+    numReviews: 18,
+  },
+  {
+    name: 'Dell XPS 13 Laptop',
+    image: '/images/dell.png',
+    description:
+      'The Dell XPS 13 Laptop combines power and portability with its stunning InfinityEdge display, fast processors, and all-day battery life. Perfect for work or play, wherever you go.',
+    brand: 'Dell',
+    category: 'Electronics',
+    price: 1299.99,
+    countInStock: 4,
+    rating: 4.6,
+    numReviews: 16,
+  },
+  {
+    name: 'GoPro Hero 10 Black',
+    image: '/images/GoPro.png',
+    description:
+      'Capture lifes adventures in stunning detail with the GoPro Hero 10 Black. Featuring HyperSmooth 4.0 stabilization, 5.3K video recording, and a rugged, waterproof design, it’s the ultimate action camera.',
+    brand: 'GoPro',
+    category: 'Electronics',
+    price: 499.99,
+    countInStock: 9,
+    rating: 4.5,
+    numReviews: 14,
+  },
+  {
+    name: 'Nintendo Switch Console',
+    image: '/images/nintendo.jpg',
+    description:
+      'Experience the joy of gaming anytime, anywhere with the Nintendo Switch Console. With its versatile design, multiplayer capabilities, and vast library of games, it’s the perfect console for gamers of all ages.',
+    brand: 'Nintendo',
+    category: 'Electronics',
+    price: 299.99,
     countInStock: 10,
     rating: 4.5,
-    numReviews: 12,
-  },
-  {
-  
-    name: 'iPhone 11 Pro 256GB Memory',
-    image: '/images/phone.jpg',
-    description:
-      'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
-    brand: 'Apple',
-    category: 'Electronics',
-    price: 599.99,
-    countInStock: 7,
-    rating: 4.0,
-    numReviews: 8,
-  },
-  {
-
-    name: 'Cannon EOS 80D DSLR Camera',
-    image: '/images/camera.jpg',
-    description:
-      'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-    brand: 'Cannon',
-    category: 'Electronics',
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-
-    name: 'Sony Playstation 4 Pro White Version',
-    image: '/images/playstation.jpg',
-    description:
-      'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
-    brand: 'Sony',
-    category: 'Electronics',
-    price: 399.99,
-    countInStock: 11,
-    rating: 5,
-    numReviews: 12,
-  },
-  {
-   
-    name: 'Logitech G-Series Gaming Mouse',
-    image: '/images/mouse.jpg',
-    description:
-      'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
-    brand: 'Logitech',
-    category: 'Electronics',
-    price: 49.99,
-    countInStock: 7,
-    rating: 3.5,
-    numReviews: 10,
-  },
-  {
-
-    name: 'Amazon Echo Dot 3rd Generation',
-    image: '/images/alexa.jpg',
-    description:
-      'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
-    brand: 'Amazon',
-    category: 'Electronics',
-    price: 29.99,
-    countInStock: 0,
-    rating: 4,
-    numReviews: 12,
+    numReviews: 16,
   },
 ]
 
